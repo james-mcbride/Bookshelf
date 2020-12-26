@@ -89,8 +89,11 @@
         event.preventDefault()
         var bookTitle=$("#inputBookName").val()
         var bookAuthor=$("#inputBookAuthor").val()
+        var className=bookAuthor.split(/[ .]/)
+        className[0]=className[0].toLowerCase()
+        className=className.join("")
         var currentShelf=$('#shelf').html()
-        currentShelf+="<div class=\"book\">" +
+        currentShelf+="<div class='book "+className+"'>" +
             "  <div class=\"back\"></div>" +
             "  <div class=\"page6\"></div>" +
             "  <div class=\"page5\"></div>" +
@@ -104,13 +107,16 @@
             "</div>" +
             "</div>"
         $("#shelf").html(currentShelf)
-        // $.ajax("data/books.json", {
-        //     type: "POST",
-        //     data: {
-        //         title:     bookTitle,
-        //         author: bookAuthor
-        //     }
-        // });
+        if ( $("."+className+" .front").css("background-color")===undefined) {
+            $("." + className + " .front").css("background-color", getRandomColor())
+            var frontColor = $("." + className + " .front").css("background-color")
+            $("." + className + " .back").css("background-color", frontColor)
+        } else{
+            var color = $("."+className+" .front").css("background-color")
+            $("."+className+" .front").css("background-color", color)
+            $("." + className + " .back").css("background-color", color)
+        }
+
     })
 
 </script>
