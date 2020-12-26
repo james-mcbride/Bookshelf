@@ -23,6 +23,16 @@
     <div id="shelf">
 
     </div>
+    <div class="book">
+        <div class="back"> Hello </div>
+        <div class="page6">Hello</div>
+        <div class="page5">Hello</div>
+        <div class="page4">Hello</div>
+        <div class="page3">Hello</div>
+        <div class="page2">Hello</div>
+        <div class="page1">Hello</div>
+        <div class="front">Hello</div>
+    </div>
 
 </div>
 
@@ -36,7 +46,7 @@
             for (var obj in data){
                 var innerObj=data[obj];
                 var innerObjContents="";
-                innerObjContents+="<div id='book'>"+
+                innerObjContents+="<div id='books'>"+
                     innerObj.title+ "<br>"+ "<br>"+
                     "Author: " + innerObj.author +
                     "</div>"
@@ -51,7 +61,7 @@
         var bookTitle=$("#inputBookName").val()
         var bookAuthor=$("#inputBookAuthor").val()
         var currentShelf=$('#shelf').html()
-        currentShelf+="<div id='book'>"+
+        currentShelf+="<div id='books'>"+
             bookTitle+ "<br>"+ "<br>"+
             "Author: " + bookAuthor +
             "</div>"
