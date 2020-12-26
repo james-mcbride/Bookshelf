@@ -23,16 +23,7 @@
     <div id="shelf">
 
     </div>
-    <div class="book">
-        <div class="back"> Hello </div>
-        <div class="page6">Hello</div>
-        <div class="page5">Hello</div>
-        <div class="page4">Hello</div>
-        <div class="page3">Hello</div>
-        <div class="page2">Hello</div>
-        <div class="page1">Hello</div>
-        <div class="front">Hello</div>
-    </div>
+
 
 </div>
 
@@ -40,12 +31,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <script>
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
     $(document).ready(function(){
         $.ajax("data/books.json").done(function(data){
             var postsContents="";
             for (var obj in data){
                 var innerObj=data[obj];
                 var innerObjContents="";
+                var className=innerObj.author.split(" ")
+                className[0]=className[0].toLowerCase()
+                className=className.join("")
                 innerObjContents+="<div class=\"book\">" +
                     "  <div class=\"back\"></div>" +
                     "  <div class=\"page6\"></div>" +
@@ -54,14 +56,21 @@
                     "  <div class=\"page3\"></div>" +
                     "  <div class=\"page2\"></div>" +
                     "  <div class=\"page1\"></div>" +
-                    "  <div class=\"front\">"+
+                    "  <div class='front "+ className+ "'"+"style='background-color: "+getRandomColor()+"'"+">"+
                     innerObj.title + "<br>"+ "<br>"+
                     "Author: " + innerObj.author +
                     "</div>" +
                     "</div>"
                 postsContents+=innerObjContents
+                //console.log($(".").css())
             }
-            console.log(postsContents)
+
+
+           //  if ($(".className").css("background-color")===undefined){
+           //     $(".className").css("background-color", "orange")
+           //     console.log($(".className").css("background-color"))
+           // }
+            //console.log(postsContents)
             $("#shelf").html(postsContents)
         })
     })
@@ -70,9 +79,18 @@
         var bookTitle=$("#inputBookName").val()
         var bookAuthor=$("#inputBookAuthor").val()
         var currentShelf=$('#shelf').html()
-        currentShelf+="<div id='books'>"+
-            bookTitle+ "<br>"+ "<br>"+
+        currentShelf+="<div class=\"book\">" +
+            "  <div class=\"back\"></div>" +
+            "  <div class=\"page6\"></div>" +
+            "  <div class=\"page5\"></div>" +
+            "  <div class=\"page4\"></div>" +
+            "  <div class=\"page3\"></div>" +
+            "  <div class=\"page2\"></div>" +
+            "  <div class=\"page1\"></div>" +
+            "  <div class=\"front\">"+
+            bookTitle + "<br>"+ "<br>"+
             "Author: " + bookAuthor +
+            "</div>" +
             "</div>"
         $("#shelf").html(currentShelf)
         // $.ajax("data/books.json", {

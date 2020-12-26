@@ -30,8 +30,8 @@
 }
 
 .front, .back {
-    background: navy;
-    color: yellow;
+    background-color: navy;
+    color: black;
 }
 
 .front, .page1, .page3, .page5 {
