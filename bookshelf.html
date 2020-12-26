@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <title>BookShelf</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/bootstrap-resume.css">
-        <link rel="stylesheet" href="css/bookshelf.css">
+    <link rel="stylesheet" href="css/bookshelf.css">
 </head>
 <body>
 <form class="form-inline d-flex align-items-center justify-content-center">
@@ -32,23 +31,27 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <script>
     function getRandomColor() {
-        var letters = '0123456789ABCDEF';
+        var letters = '23456789ABCDEF';
         var color = '#';
         for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
+            color += letters[Math.floor(Math.random() * 14)];
         }
         return color;
     }
     $(document).ready(function(){
+        var authorArray=[]
         $.ajax("data/books.json").done(function(data){
             var postsContents="";
             for (var obj in data){
                 var innerObj=data[obj];
                 var innerObjContents="";
-                var className=innerObj.author.split(" ")
+                var className=innerObj.author.split(/[ .]/)
                 className[0]=className[0].toLowerCase()
                 className=className.join("")
-                innerObjContents+="<div class=\"book\">" +
+                if (authorArray.indexOf(className)===-1){
+                    authorArray.push(className)
+                }
+                innerObjContents+="<div class='book "+className+"'>" +
                     "  <div class=\"back\"></div>" +
                     "  <div class=\"page6\"></div>" +
                     "  <div class=\"page5\"></div>" +
@@ -56,7 +59,7 @@
                     "  <div class=\"page3\"></div>" +
                     "  <div class=\"page2\"></div>" +
                     "  <div class=\"page1\"></div>" +
-                    "  <div class='front "+ className+ "'"+"style='background-color: "+getRandomColor()+"'"+">"+
+                    "  <div class='front'>"+
                     innerObj.title + "<br>"+ "<br>"+
                     "Author: " + innerObj.author +
                     "</div>" +
@@ -72,8 +75,16 @@
            // }
             //console.log(postsContents)
             $("#shelf").html(postsContents)
+            console.log(authorArray)
+            for (var i=0; i<authorArray.length; i++){
+               // console.log(authorArray[i])
+                $("."+authorArray[i]+" .front").css("background-color", getRandomColor())
+                var frontColor=$("."+authorArray[i]+" .front").css("background-color")
+                $("."+authorArray[i]+" .back").css("background-color", frontColor)
+            }
         })
     })
+
     $("button").click(function(event){
         event.preventDefault()
         var bookTitle=$("#inputBookName").val()
