@@ -60,8 +60,8 @@
                     "  <div class=\"page2\"></div>" +
                     "  <div class=\"page1\"></div>" +
                     "  <div class='front'>"+
-                    innerObj.title + "<br>"+ "<br>"+
-                    "Author: " + innerObj.author +
+                        "<div class='title'>"+ innerObj.title + "</div>"+
+                        "<div class='author'>"+ innerObj.author + "</div>"+
                     "</div>" +
                     "</div>"
                 postsContents+=innerObjContents
@@ -83,6 +83,24 @@
                 $("."+authorArray[i]+" .back").css("background-color", frontColor)
             }
         })
+    })
+    $(document).on('click','.book',function(){
+        console.log($(this).position())
+        $(this).css({
+            "transform": "scale(2,1) translate(50%, 50%)",
+            "z-index": "100",
+            "writing-mode": "horizontal-tb",
+            "font-size":".75em"
+            })
+        $(this).children().css({
+            "padding": "5px",
+            "display": "inline-block"
+        })
+        $(this).children().children().css({
+            "display": "inline-block",
+            "margin": "10px 0"
+        })
+
     })
 
     $("button").click(function(event){

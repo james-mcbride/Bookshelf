@@ -11,17 +11,27 @@
     transform-style: preserve-3d;
     position: static;
     height: 175px;
-    width: 100px;
+    width: 75px;
     cursor: pointer;
     backface-visibility: hidden;
     margin-right: 5px;
     margin-bottom: 5px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    text-align: center;
+}
+.book .front{
+    text-align: center;
+    padding: 5px 20px;
+}
+.author{
+    display: none;
 }
 
 .front, .back, .page1, .page2, .page3, .page4, .page5, .page6 {
     transform-style: preserve-3d;
     position: absolute;
-    width: 100px;
+    width: 100%;
     height: 100%;
     top: 0; left: 0;
     transform-origin: left center;
@@ -68,41 +78,43 @@
     background: #fdfdfd;
 }
 
-.book:hover .front {
-    transform: rotateY(-160deg) scale(1.1);
-    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
-}
 
-.book:hover .page1 {
-    transform: rotateY(-150deg) scale(1.1);
-    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
-}
 
-.book:hover .page2 {
-    transform: rotateY(-30deg) scale(1.1);
-    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
-}
+/*.book:hover .front {*/
+/*    transform: rotateY(-160deg) scale(1.1);*/
+/*    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);*/
+/*}*/
 
-.book:hover .page3 {
-    transform: rotateY(-140deg) scale(1.1);
-    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
-}
+/*.book:hover .page1 {*/
+/*    transform: rotateY(-150deg) scale(1.1);*/
+/*    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);*/
+/*}*/
 
-.book:hover .page4 {
-    transform: rotateY(-40deg) scale(1.1);
-    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
-}
+/*.book:hover .page2 {*/
+/*    transform: rotateY(-30deg) scale(1.1);*/
+/*    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);*/
+/*}*/
 
-.book:hover .page5 {
-    transform: rotateY(-130deg) scale(1.1);
-    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
-}
+/*.book:hover .page3 {*/
+/*    transform: rotateY(-140deg) scale(1.1);*/
+/*    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);*/
+/*}*/
 
-.book:hover .page6 {
-    transform: rotateY(-50deg) scale(1.1);
-    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
-}
+/*.book:hover .page4 {*/
+/*    transform: rotateY(-40deg) scale(1.1);*/
+/*    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);*/
+/*}*/
 
-.book:hover .back {
-    transform: rotateY(-20deg) scale(1.1);
-}
+/*.book:hover .page5 {*/
+/*    transform: rotateY(-130deg) scale(1.1);*/
+/*    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);*/
+/*}*/
+
+/*.book:hover .page6 {*/
+/*    transform: rotateY(-50deg) scale(1.1);*/
+/*    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);*/
+/*}*/
+
+/*.book:hover .back {*/
+/*    transform: rotateY(-20deg) scale(1.1);*/
+/*}*/
