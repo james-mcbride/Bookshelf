@@ -1,13 +1,24 @@
+.exit{
+    display: none;
+    position: absolute;
+    font-size: 30px;
+    background-color: white;
+    z-index: 200;
+    top: 75px;
+    left: 0px;
+    float: right;
+    color: red;
 
 
-#shelf{
-    display: flex;
-    flex-wrap: wrap;
 }
 
 
-
+.page5, .page6{
+    display: none;
+}
 .book {
+    margin-top: 60px;
+    float: left;
     transform-style: preserve-3d;
     position: static;
     height: 175px;
@@ -19,7 +30,9 @@
     writing-mode: vertical-rl;
     text-orientation: mixed;
     text-align: center;
+    z-index: -1;
 }
+
 .book .front{
     text-align: center;
     padding: 5px 20px;
@@ -118,3 +131,17 @@
 /*.book:hover .back {*/
 /*    transform: rotateY(-20deg) scale(1.1);*/
 /*}*/
+
+html, body{
+    height: 100%;
+    width: 100%
+}
+
+#shelf{
+    background-image: url("../img/bookshelf2.jpg");
+    background-repeat: no-repeat;
+    height: 2000px;
+    max-width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+}

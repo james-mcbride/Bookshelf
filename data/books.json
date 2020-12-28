@@ -1,7 +1,9 @@
 [
   {
     "title": "Red Rising",
-    "author":  "Pierce Brown"
+    "author":  "Pierce Brown",
+    "review": "Someone described it perfectly as a combination of I, Claudius, Ender's Game, and Hunger Games. Definitely need to read this one again!",
+    "image": "<img src='img/red_rising.jpg' style='width: 80%;height:80%;transform: scaleX(-1)'>"
   }, {
   "title": "Golden Sun",
   "author":  "Pierce Brown"
@@ -13,9 +15,6 @@
   "author":  "Pierce Brown"
 } , {
   "title": "Dark Age",
-  "author":  "Pierce Brown"
-}, {
-  "title": "Red Rising",
   "author":  "Pierce Brown"
 }, {
   "title": "Harry Potter and the Sorcerer's Stone",

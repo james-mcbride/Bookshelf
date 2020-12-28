@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/bookshelf.css">
 </head>
 <body>
+<br>
 <form class="form-inline d-flex align-items-center justify-content-center">
     <div class="form-group mr-2">
         <label  for="inputBookName">Book Name:   </label>
@@ -16,8 +17,12 @@
         <label for="inputBookAuthor">Author Name:   </label>
         <input class="form-control" id="inputBookAuthor" placeholder="Author Name">
     </div>
-    <button type="submit" class="btn btn-primary">Add to Bookshelf!</button>
+    <button type="submit" class="btn btn-primary" id="bookButton">Add to Bookshelf!</button>
+
 </form>
+<div class="exit">Click to return book</div>
+<br>
+
 <div id="bookshelf">
     <div id="shelf">
 
@@ -25,7 +30,7 @@
 
 
 </div>
-
+<script src="https://kit.fontawesome.com/8c24b0a2c7.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
@@ -53,8 +58,8 @@
                 }
                 innerObjContents+="<div class='book "+className+"'>" +
                     "  <div class=\"back\"></div>" +
-                    "  <div class=\"page6\"></div>" +
-                    "  <div class=\"page5\"></div>" +
+                    "  <div class=\"page6\">"+innerObj.review+"</div>" +
+                    "  <div class=\"page5\">"+innerObj.image+"</div>" +
                     "  <div class=\"page4\"></div>" +
                     "  <div class=\"page3\"></div>" +
                     "  <div class=\"page2\"></div>" +
@@ -63,17 +68,11 @@
                         "<div class='title'>"+ innerObj.title + "</div>"+
                         "<div class='author'>"+ innerObj.author + "</div>"+
                     "</div>" +
+                    // "<div class='exit'>Click to return book!</div>" +
                     "</div>"
                 postsContents+=innerObjContents
-                //console.log($(".").css())
             }
 
-
-           //  if ($(".className").css("background-color")===undefined){
-           //     $(".className").css("background-color", "orange")
-           //     console.log($(".className").css("background-color"))
-           // }
-            //console.log(postsContents)
             $("#shelf").html(postsContents)
             console.log(authorArray)
             for (var i=0; i<authorArray.length; i++){
@@ -85,25 +84,138 @@
         })
     })
     $(document).on('click','.book',function(){
-        console.log($(this).position())
-        $(this).css({
-            "transform": "scale(2,1) translate(50%, 50%)",
-            "z-index": "100",
-            "writing-mode": "horizontal-tb",
-            "font-size":".75em"
+
+        // Measuring location of book and dimensions of window, to center book in middle of window.
+        var bookXPosition = $(this).position().left
+        var bookYPosition= $(this).position().top
+        var windowWidth= window.innerWidth
+        $(".exit").css("left", windowWidth/2-80)
+        var windowHeight=window.innerHeight
+        var xMovement = (windowWidth/2)-bookXPosition;
+        var yMovement = (windowHeight/2-175)-bookYPosition
+        var translateVariable = "translate("+xMovement +"px, "+yMovement+"px) scale(4,2)"
+
+
+        if (!$(this).hasClass("not-clickable")) {
+            $(this).css({
+                "transform": translateVariable,
+                "position": "relative",
+                "z-index": "100",
+                "writing-mode": "horizontal-tb",
+                "font-size": ".75em"
             })
-        $(this).children().css({
-            "padding": "5px",
-            "display": "inline-block"
-        })
-        $(this).children().children().css({
-            "display": "inline-block",
-            "margin": "10px 0"
-        })
+            $(".page6").css("font-size", "5px")
+            $(this).children("div").css({
+                "padding": "5px",
+                "display": "inline-block"
+            })
+            $(this).children("div").children("div").css({
+                "display": "inline-block",
+                "margin": "20px 0 0 0"
+            })
+            $(".book").toggleClass("not-clickable")
+            $(this).addClass("hover")
+            $(".exit").show()
+        }
 
     })
+    // $(".shelf").hover(
+    //     function(){
+    //         $("body").css("background-color", "red")
+    //     },
+    //     function(){
+    //         $("body").css("background-color", "white")
+    //     }
+    // )
+    $("div").on("mouseenter", ".hover",
 
-    $("button").click(function(event){
+        function(){
+        $(this).children(".front").css({
+            "transform": "rotateY(-160deg) scale(1.1)",
+            "box-shadow": "0 1em 3em 0 rgba(0, 0, 0, .2)"
+        })
+        $(this).children(".page1").css({
+            "transform": "rotateY(-155deg) scale(1.1)",
+            "box-shadow": "0 1em 3em 0 rgba(0, 0, 0, .2)"
+        })
+        $(this).children(".page2").css({
+            "transform": "rotateY(-25deg) scale(1.1)",
+            "box-shadow": "0 1em 3em 0 rgba(0, 0, 0, .2)"
+        })
+        $(this).children(".page3").css({
+            "transform": "rotateY(-150deg) scale(1.1)",
+            "box-shadow": "0 1em 3em 0 rgba(0, 0, 0, .2)"
+        })
+        $(this).children(".page4").css({
+            "transform": "rotateY(-30deg) scale(1.1)",
+            "box-shadow": "0 1em 3em 0 rgba(0, 0, 0, .2)"
+        })
+        $(this).children(".page5").css({
+            "transform": "rotateY(-145deg) scale(1.1)",
+            "box-shadow": "0 1em 3em 0 rgba(0, 0, 0, .2)"
+        })
+        $(this).children(".page6").css({
+            "transform": "rotateY(-35deg) scale(1.1)",
+            "box-shadow": "0 1em 3em 0 rgba(0, 0, 0, .2)"
+        })
+        $(this).children(".back").css({
+            "transform": "rotateY(-20deg) scale(1.1)",
+        })
+        }).on("mouseleave", ".hover",
+        function(){
+            $(this).children(".front").css({
+                "transform": "rotateY(0deg)",
+            })
+            $(this).children(".page1").css({
+                "transform": "rotateY(0deg)",
+
+            })
+            $(this).children(".page2").css({
+                "transform": "rotateY(0deg) ",
+            })
+            $(this).children(".page3").css({
+                "transform": "rotateY(0deg)",
+
+            })
+            $(this).children(".page4").css({
+                "transform": "rotateY(0deg)",
+            })
+            $(this).children(".page5").css({
+                "transform": "rotateY(0deg) ",
+            })
+            $(this).children(".page6").css({
+                "transform": "rotateY(0deg)",
+            })
+            $(this).children(".back").css({
+                "transform": "rotateY(0deg)",
+            })
+        }
+        )
+    $(document).on('click','.exit',function(){
+       $(".hover").css("transform", "unset")
+
+        $(".hover").css({
+            "position": "static",
+            "z-index": "100",
+            "writing-mode": "vertical-rl",
+            "font-size": "1em",
+            "padding": "5px 20px"
+        })
+        $(".hover").children().css({
+            "margin": "0px",
+            "padding": "5px 20px"
+        })
+        $(".hover").children().children().css({
+            "margin": "0px",
+        })
+
+        $(".author").css("display", "none")
+        $(".hover").removeClass("hover")
+        $(".exit").hide()
+        $(".book").toggleClass("not-clickable")
+
+    })
+    $("#bookButton").click(function(event){
         event.preventDefault()
         var bookTitle=$("#inputBookName").val()
         var bookAuthor=$("#inputBookAuthor").val()
@@ -120,8 +232,8 @@
             "  <div class=\"page2\"></div>" +
             "  <div class=\"page1\"></div>" +
             "  <div class=\"front\">"+
-            bookTitle + "<br>"+ "<br>"+
-            "Author: " + bookAuthor +
+                "<div class='title'>"+ bookTitle + "</div>"+
+                "<div class='author'>"+ bookAuthor + "</div>"+
             "</div>" +
             "</div>"
         $("#shelf").html(currentShelf)
