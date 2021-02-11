@@ -30,11 +30,26 @@
 
 
 </div>
+<script src="js/keys.js"></script>
 <script src="https://kit.fontawesome.com/8c24b0a2c7.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <script>
+
+//     const options = {
+//         method: 'GET',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         }
+//     }
+// function getBook(book,author) {
+//     // fetch(`https://www.googleapis.com/books/v1/volumes?q=${book}+inauthor:${author}&key=${token}`)
+//     fetch(`https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=${token}`,options)
+//         .then(data => console.log("success!"+data.json()))
+//         .catch(error => console.log("We have an issue"+error.json()))
+// }
+// getBook("Harry Potter", "JK Rowling")
     function getRandomColor() {
         var letters = '23456789ABCDEF';
         var color = '#';
@@ -219,6 +234,8 @@
         event.preventDefault()
         var bookTitle=$("#inputBookName").val()
         var bookAuthor=$("#inputBookAuthor").val()
+
+
         var className=bookAuthor.split(/[ .]/)
         className[0]=className[0].toLowerCase()
         className=className.join("")

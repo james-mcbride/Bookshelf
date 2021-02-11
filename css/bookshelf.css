@@ -31,6 +31,10 @@
     text-orientation: mixed;
     text-align: center;
     z-index: -1;
+    border-bottom-right-radius: .5em;
+    border-top-right-radius: .5em;
+    border: 2px solid black;
+
 }
 
 .book .front{
